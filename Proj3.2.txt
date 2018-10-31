@@ -1,0 +1,183 @@
+# Mem [3] = T
+# Mem [4] = S
+# Mem [5] = C
+# Mem [6] = empty
+# Mem [7] = empty
+# Mem [8] = Pattern_Array[1]
+# Mem [..107]= Pattern_Array[100]
+
+li $0,3
+add $0,$0    
+add $0,$0
+add $0,$0
+add $0,$0
+add $0,$0
+#3,6,12,24,48,96
+
+li $1,2
+add $1,$1
+add $1,$1
+add $0,$1
+#96+8 = 104
+li $1,2
+add $1,$1
+add $0,$1
+#104+4 = 108
+add $1,$1
+sw $0,$1
+#Store maximum number of arrays in Mem [6]
+
+
+
+loop:
+li $1,2
+add $1,$1
+add $1,$1
+li $0,3
+add $0,$0
+lw $0,$0
+slt $0,$1
+li $1 ,2
+beqz $0,$1
+halt
+# IF 107 becomes < 8 then stop the loop
+
+li $0,3
+add $0,$0
+lw $1,$0
+lw $1,$1
+subi $1
+sw $1,$0
+# Decrement the address counter
+
+li $0,3
+lw $3,$0
+lw $0,$1
+xor $3
+sub $3,$3
+add $3,$0
+li $0,3
+add $0,$0
+lw $0,$0
+li $1,0
+sw $1,$0
+#$3 = T xor Pattern_Array[x]
+#Mem [x] = 0
+
+li $0,2
+add $0,$0
+add $0,$0
+add $0,$0
+li $1,0
+# counter = 16
+
+subi $0
+li $1,3
+add $1,$1
+lw $1,$1
+lw $2,$1
+andi $1,$3
+srl $3
+add $2,$1
+li $1,3
+add $1,$1
+lw $1,$1
+sw $2,$1
+sub $2,$2
+li $1,2
+add $1,$1
+add $1,$1
+beqz $0,$1
+li $1,-3
+add $1,$1
+add $1,$1
+add $1,$1
+add $2,$1
+li $1,0
+j $2
+# Finds the inverse score of Pattern_Array[x]
+
+li $0,3
+add $0,$0
+lw $0,$0
+lw $0,$0
+li $1, 2
+add $1,$1
+add $1,$1
+add $1,$1
+sub $1,$0
+li $0,3
+add $0,$0
+lw $0,$0
+sw $1,$0
+# Gives the corrected score of Pattern_array[x]
+
+sub $3,$3
+add $3,$1
+li $1,2
+add $1,$1
+lw $1,$1
+# $3 = current score
+# $1 = best score
+li $0,2
+add $2,$0
+add $2,$2
+add $2,$2
+add $2,$2
+li $0,3
+add $2,$0
+add $2,$2
+add $2,$2
+add $2,$2
+li $0,1
+add $2,$0
+slt $1,$3
+beqz $0,$2
+#Incase current < best then skip to bottom
+
+li $0,0
+add $0,$1
+sub $0,$3
+li $1,3
+add $1,$1
+add $1,$1
+subi $1
+subi $1
+subi $1
+beqz $0,$1
+#If current = best
+#Skip the next check and go to C=C+1
+
+li $0,2
+add $0,$0
+sw $3,$0
+#If Best score < Current Score
+li $0,3
+add $0,$0
+subi $0
+li $1,0
+sw $1,$0
+# C=0
+li $0,3
+add $0,$0
+subi $0
+lw $2,$0
+li $1,1
+add $2,$1
+sw $2,$0
+# C=C+1
+
+li $0,-4
+add $0,$0
+add $0,$0
+add $0,$0
+add $0,$0
+add $0,$0
+li $1,3
+add $1,$1
+add $1,$1
+add $0,$1
+li $1,1
+add $0,$1
+j $0
+#jump back to loop, needs to be 115
