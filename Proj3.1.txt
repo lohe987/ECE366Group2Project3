@@ -1,9 +1,5 @@
-#P=9
-#Q=17
-
 li $0,0
 li $1,1
-
 sub $2,$2      # $2=0
 add $2,$1      # $2=$1
 add $1,$2
@@ -11,14 +7,12 @@ add $1,$2
 add $1,$2
 add $1,$2
 add $1,$2      # $1^6
-
 li $0,3
 sub $3,$3
 add $3,$0
 li $0,1
 add $3,$3     # $3=6 for beqz func
 add $3,$1
-
 li $0,1
 lw $0,$0
 slt $0,$1     #Compares if current iteration of 6^P > Q
@@ -26,9 +20,9 @@ beqz $0,$3
 lw $0,$0
 sub $1,$0
 li $0,-4
-li $0,-4
 add $0,$0
 j $0
+sub $0,$0
 sub $0,$0
 lw $0,$0
 subi $0
@@ -39,7 +33,6 @@ add $0,$0
 add $0,$0
 add $0,$0     #Jumps back 32 bits
 j $0
-
 li $0,2
 sw $1,$0
 halt
