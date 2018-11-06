@@ -1,5 +1,21 @@
 li $0,0
 li $1,1
+sub $2,$2
+sub $2,$2
+sub $2,$2
+sub $2,$2
+sub $2,$2
+sub $2,$2
+sub $2,$2
+sub $2,$2
+sub $2,$2
+sub $2,$2
+sub $2,$2
+sub $2,$2
+sub $2,$2
+sub $2,$2
+sub $2,$2
+sub $2,$2
 sub $2,$2      # $2=0
 add $2,$1      # $2=$1
 add $1,$2
@@ -10,9 +26,8 @@ add $1,$2      # $1^6
 li $0,3
 sub $3,$3
 add $3,$0
-li $0,1
 add $3,$3     # $3=6 for beqz func
-add $3,$1
+add $3,$0     # $3 = 9
 li $0,1
 lw $0,$0
 slt $0,$1     #Compares if current iteration of 6^P > Q
@@ -24,15 +39,19 @@ add $0,$0
 j $0
 sub $0,$0
 sub $0,$0
+sub $0,$0
 lw $0,$0
 subi $0
 beqz $0,$3
-sw $0, $0      # P-=1 stored
-li $0, -4
+sub $3,$3
+sw $0, $3      # P-=1 stored
+li $0, -3
 add $0,$0
 add $0,$0
-add $0,$0     #Jumps back 32 bits
+add $0,$0     #Jumps back 24
+add $0,$0     # 48 
 j $0
+li $0,0
 li $0,2
 sw $1,$0
 halt
