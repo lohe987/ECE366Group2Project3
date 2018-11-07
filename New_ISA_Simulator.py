@@ -15,6 +15,7 @@ def simulate(Instr, num_instr, Mem):
     while(not(finished)):
         line = Instr[PC]
         DIC += 1
+        
         if(line[1:4] == "000"):
             funct = "lw"
             rx = int(line[4:6],2)
@@ -49,13 +50,15 @@ def simulate(Instr, num_instr, Mem):
                 Reg[0] = 0
             PC += 1
             print("%s $%s, $%s" % (funct, rx, ry))
+            
+        elif(line[1:8] == "0111000"):
+            finished = True
+            print('Halt')
 
         elif(line[1:5] == "0111"):
             funct = "beqz"
             rx = int(line[5],2)
             ry = int(line[6:8],2)
-            if(Reg[ry] == 0):
-                finished = True
             if(Reg[rx] == 0):
                 PC = PC + Reg[ry]
             else:
@@ -118,8 +121,7 @@ def simulate(Instr, num_instr, Mem):
             PC = PC + Reg[rx]
             print("%s $%s" % (funct, rx))
             
-        elif(line[1:7] == "011100"):
-            finished == True
+        
 
     print("******** Simulation finished *********")
     print("Dynamic Instr Count: ",DIC)
